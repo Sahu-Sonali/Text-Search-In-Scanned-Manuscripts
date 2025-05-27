@@ -1,6 +1,8 @@
 # 📜 Text Search in Scanned Manuscripts
 
-This project provides a streamlined pipeline to **extract, preprocess, and search text** in scanned manuscript images using OCR and NLP techniques.
+Text Search in Scanned Manuscripts is a Python-based application that enables users to extract and search text from scanned images of historical or handwritten documents. Using Tesseract OCR for text recognition, OpenCV for image preprocessing, and NLP libraries like NLTK or spaCy for text analysis, the tool provides an interactive Streamlit interface for uploading images, extracting text, and performing keyword-based searches. It's ideal for researchers, archivists, and digital humanities projects.
+
+This project provides a streamlined pipeline to **extract, preprocess, and search text** in scanned manuscript images and pdf using OCR and NLP techniques.
 
 ## 🔍 Features
 
