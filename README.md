@@ -14,5 +14,52 @@ This project provides a streamlined pipeline to **extract, preprocess, and searc
 
 ---
 
+              Project Architecture Diagram (Text Format)
+                   ┌───────────────────────────┐
+                   │       User Uploads        │
+                   │    (PDF / Image File)     │
+                   └─────────────┬─────────────┘
+                                 │
+                                 ▼
+                   ┌───────────────────────────┐
+                   │   File Identification     │
+                   │ (Image or PDF Detection)  │
+                   └─────────────┬─────────────┘
+                                 │
+     ┌───────────────────────────┼───────────────────────────┐
+     ▼                           ▼                           ▼
+┌───────────┐            ┌───────────────┐         ┌──────────────────┐
+│ Image      │            │ Extract PDF   │         │ Extract Images   │
+│ Preprocess │            │ Text (Fitz)   │         │ from PDF Pages   │
+└─────┬──────┘            └──────┬────────┘         └──────────┬───────┘
+      │                           │                             │
+      ▼                           ▼                             ▼
+┌─────────────┐         ┌─────────────────────┐        ┌──────────────────┐
+│ OCR Text    │         │ Combine All Extracted│        │ Preprocess Image │
+│ (Tesseract) │         │ Text (PDF + Images)  │        └───────┬─────────┘
+└──────┬──────┘         └─────────────────────┘                │
+       │                                                       ▼
+       ▼                                             ┌──────────────────┐
+┌──────────────┐                                     │ OCR on Extracted │
+│ Final Raw     │                                     │ PDF Images      │
+│ Text Output   │                                     └───────┬─────────┘
+└───────┬────────┘                                             │
+        ▼                                                       ▼
+                   ┌───────────────────────────┐
+                   │  NLP Processing Module    │
+                   │  - Summarization (LSA)    │
+                   │  - Word Frequency         │
+                   │  - Search Keyword         │
+                   └─────────────┬─────────────┘
+                                 ▼
+                   ┌───────────────────────────┐
+                   │ Streamlit Visualization   │
+                   │  ● Text Output            │
+                   │  ● Images                 │
+                   │  ● Summary                │
+                   │  ● Charts                 │
+                   │  ● Search Result          │
+                   └───────────────────────────┘
+
 
 
