@@ -15,53 +15,37 @@ This project provides a streamlined pipeline to **extract, preprocess, and searc
 
 
          
-+---------------------------------------------+
-|                 User Input                  |
-|     (Upload Image or PDF Document)          |
-+-------------------------+-------------------+
-                          |
-                          v
-+---------------------------------------------+
-|            File Type Identification          |
-|   (Check if file is Image or PDF format)     |
-+-------------------------+-------------------+
-                          |
-          +---------------+---------------+
-          |                               |
-          v                               v
-+-----------------------------+   +-----------------------------+
-|      Image Processing       |   |        PDF Processing       |
-|  - OpenCV Preprocessing     |   |  - Extract Text (PyMuPDF)   |
-|  - Noise Removal            |   |  - Extract Embedded Images  |
-|  - Thresholding             |   |  - Convert PDF Pages to Img |
-+-------------+---------------+   +---------------+-------------+
-              |                                   |
-              v                                   v
-+-----------------------------+   +-----------------------------+
-|         OCR Module          |   |       OCR on PDF Images     |
-|      (Tesseract OCR)        |   |       (Tesseract OCR)       |
-+-------------+---------------+   +---------------+-------------+
-              |                                   |
-              +---------------+-------------------+
-                              |
-                              v
-+-------------------------------------------------------------+
-|                     NLP Processing Module                   |
-|  - Text Cleaning                                            |
-|  - Text Summarization (LSA)                                 |
-|  - Keyword Extraction                                       |
-|  - Search Within Document                                   |
-+-----------------------------+-------------------------------+
-                              |
-                              v
-+-------------------------------------------------------------+
-|                   Streamlit User Interface                   |
-|  - Display Extracted Text                                    |
-|  - Display Images                                            |
-|  - Display Summary                                           |
-|  - Word Frequency Charts                                     |
-|  - Search Results                                            |
-+-------------------------------------------------------------+
+Project Architecture 
+
+User Uploads (PDF / Image)
+|
++-- File Identification (Image or PDF)
+    |
+    +-- Image path:
+    |   +-- Image Preprocess (OpenCV)
+    |   +-- OCR Text (Tesseract)
+    |   \-- Final Raw Text Output
+    |
+    \-- PDF path:
+        +-- Extract PDF Text (PyMuPDF)
+        +-- Extract Images from PDF
+        |   +-- Preprocess Extracted Images (OpenCV)
+        |   \-- OCR on Extracted Images (Tesseract)
+        \-- Combine Extracted Text (PDF text + OCR from images)
+            \-- Final Raw Text Output
+|
++-- NLP Processing Module
+|   +-- Summarization (LSA)
+|   +-- Word Frequency Analysis
+|   \-- Keyword Search
+|
+\-- Streamlit Visualization
+    +-- Extracted Text
+    +-- Images
+    +-- Summary
+    +-- Charts (Top words)
+    \-- Search Results
+
 
                    
 ---
