@@ -12,33 +12,61 @@ This project provides a streamlined pipeline to **extract, preprocess, and searc
 - 🔎 Keyword search and snippet retrieval
 - 🖼️ Streamlit interface for easy image uploads and querying
 
----
+
 
               Project Architecture Diagram (Text Format)
-```mermaid
-flowchart TD
-
-A[User Uploads<br/>(PDF / Image)] --> B[File Identification<br/>(Image or PDF)]
-
-B --> C1[Image Preprocessing<br/>(OpenCV)]
-B --> C2[Extract PDF Text<br/>(PyMuPDF)]
-B --> C3[Extract Images from PDF]
-
-C1 --> D1[OCR Text (Tesseract)]
-C3 --> C4[Preprocess Extracted Images]
-C4 --> D2[OCR Text (Tesseract)]
-C2 --> D3[Raw PDF Text]
-
-D1 --> E[Combine All Extracted Text]
-D2 --> E
-D3 --> E
-
-E --> F[NLP Processing Module<br/>- LSA Summary<br/>- Word Frequency<br/>- Keyword Search]
-
-F --> G[Streamlit Visualization<br/>Text • Images • Summary • Charts • Search Results]
+                               +-----------------------------+
+                               |         User Uploads        |
+                               |      (PDF / Image File)     |
+                               +--------------+--------------+
+                                              |
+                                              v
+                               +-----------------------------+
+                               |     File Identification     |
+                               |   (Image or PDF Detection)  |
+                               +--------------+--------------+
+                                              |
+            +---------------------------------+---------------------------------+
+            |                                 |                                 |
+            v                                 v                                 v
+   +-------------------+            +-------------------+              +---------------------+
+   |  Image Preprocess |            |  Extract PDF Text |              | Extract Images from |
+   |   (OpenCV)        |            |     (PyMuPDF)     |              |     PDF Pages       |
+   +---------+---------+            +---------+---------+              +----------+----------+
+             |                               |                                    |
+             v                               v                                    v
+   +-------------------+           +--------------------------+           +-------------------+
+   |  OCR Text Output  |           | Combine Extracted Text   |           | Preprocess Image  |
+   |   (Tesseract)     |           |    (PDF + Images)        |           |    (OpenCV)       |
+   +---------+---------+           +-------------+------------+           +----------+--------+
+             |                                     |                                |
+             v                                     v                                v
+   +-------------------+           +--------------------------+           +-------------------+
+   | Final Raw Text    |           |   OCR on PDF Images      |           | OCR Text Output   |
+   | Output            |           |      (Tesseract)         |           |   (Tesseract)     |
+   +---------+---------+           +-------------+------------+           +----------+--------+
+             |                                     |                                |
+             +-------------------------------------+--------------------------------+
+                                              |
+                                              v
+                               +-----------------------------+
+                               |    NLP Processing Module    |
+                               |  - Summarization (LSA)      |
+                               |  - Word Frequency Analysis   |
+                               |  - Keyword Search            |
+                               +--------------+--------------+
+                                              |
+                                              v
+                               +-----------------------------+
+                               |   Streamlit Visualization   |
+                               |   - Extracted Text          |
+                               |   - Images                  |
+                               |   - Summary                 |
+                               |   - Charts                  |
+                               |   - Search Results          |
+                               +-----------------------------+
 
 ---
-
 
                    
 
