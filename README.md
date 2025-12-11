@@ -15,38 +15,8 @@ This project provides a streamlined pipeline to **extract, preprocess, and searc
 
 
          
-Project Architecture
 
-User Uploads (PDF / Image)
-|
-+-- File Identification (Image or PDF)
-    |
-    +-- Image Path:
-    |     +-- Image Preprocess (OpenCV)
-    |     +-- OCR Text (Tesseract)
-    |     \-- Final Raw Text Output
-    |
-    \-- PDF Path:
-          +-- Extract PDF Text (PyMuPDF)
-          +-- Extract Images from PDF
-          |     +-- Preprocess Extracted Images (OpenCV)
-          |     \-- OCR on Extracted Images (Tesseract)
-          |
-          \-- Combine Extracted Text
-                (PDF text + OCR text from images)
-                \-- Final Raw Text Output
-|
-+-- NLP Processing Module
-|     +-- Summarization (LSA)
-|     +-- Word Frequency Analysis
-|     \-- Keyword Search
-|
-\-- Streamlit Visualization
-      +-- Extracted Text
-      +-- Images
-      +-- Summary
-      +-- Charts (Top Words)
-      \-- Search Results
+
 
 
 
